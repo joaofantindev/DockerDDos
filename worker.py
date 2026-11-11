@@ -5,7 +5,7 @@ import sys
 
 # O alvo é passado como argumento via linha de comando
 TARGET = sys.argv[1]
-PORT = 80 # Porta padrão HTTP
+PORT = 8000 # Porta padrão HTTP
 # vou alterar para seleção de portas
 
 def attack():
